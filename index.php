@@ -7,17 +7,24 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
- <?php 
-    include 'includes/header.php';
- ?>
-	<!-- laad hier via php je header in (vanuit je includes map) -->
+    <?php include 'includes/header.php'; ?>
 
+    <main>
+        <?php
+        $page = $_GET['page'];
 
-	<!-- laad hier via php de juiste contentpagina in (vanuit de pages map) in. Welke geselecteerd moet worden kun je uit de URL halen (URL_Params).-->
+        if ($page == 'sport') {
+            include 'pages/sport.php';
+        } elseif ($page == 'vrijetijdsbesteding') {
+            include 'pages/vrijetijdsbesteding.php';
+        } elseif ($page == 'game1') {
+            include 'pages/game1.php';
+        } elseif ($page == 'game2') {
+            include 'pages/game2.php';
+        }
+        ?>
+    </main>
 
-	
-	<!-- laad hier via php je footer in (vanuit je includes map)-->
-
-
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>
