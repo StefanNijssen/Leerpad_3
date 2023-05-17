@@ -1,3 +1,3 @@
-<!-- jouw HTML voor een Footer komt hier... 
-Benoem hier ten minste je naam en de tijd
--->
+<footer>
+    <p><?php echo date('d-m-Y'); ?></p>
+</footer>
