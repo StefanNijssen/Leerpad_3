@@ -2,7 +2,7 @@
     <div class="header-wrapper">
         <nav>
             <ul>
-                <li><a href="index.php?page=sport">Sport</a></li>
+                <li><a href="index.php?page=sport">Sporrt</a></li>
                 <li><a href="index.php?page=vrijetijdsbesteding">Vrijetijdsbesteding</a></li>
                 <li><a href="index.php?page=game1">Game 1</a></li>
                 <li><a href="index.php?page=game2">Game 2</a></li>
