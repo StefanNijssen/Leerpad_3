@@ -2,10 +2,10 @@
 $servername = "localhost"; // De naam van de server (standaard "localhost" als je lokaal werkt)
 $username = "root"; // Je MySQL-gebruikersnaam
 $password = "mysql"; // Je MySQL-wachtwoord
-$database = "onderwerpen"; // De naam van je database
+$database = "Onderwerpen"; // De naam van je database
 
 // Verbinding maken met de database
-$conn = new mysqli($servername, $username, $password, $database);
+$conn = new mysql($servername, $username, $password, $database);
 
 // Controleren op eventuele fouten tijdens het verbinden
 if ($conn->connect_error) {
