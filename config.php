@@ -1,45 +1,39 @@
 <?php
-    $servername = "localhost"; // De naam van de server (meestal localhost voor lokale ontwikkeling)
-    $username = "root"; // Je phpMyAdmin-gebruikersnaam
-    $password = "mysql"; // Je phpMyAdmin-wachtwoord
-    $database = "databank_php"; // De naam van je database
+$servername = "localhost";
+$username = "root";
+$password = "mysql";
+$database = "databank_php";
 
-    // Verbinding maken met de database
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    // Controleren op eventuele fouten tijdens het verbinden
-    if ($conn->connect_error) {
-        die("Kan geen verbinding maken met de database: " . $conn->connect_error);
-    } 
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$database;charset=utf8mb4", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Verbinding met de database is succesvol tot stand gebracht.";
 
     $sql = "SELECT * FROM onderwerpen";
-    $result = $conn->query($sql);
+    $stmt = $conn->query($sql);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if ($result) {
-        $row_count = mysqli_num_rows($result);
-
-        if ($row_count > 0) {
-        // Itereren over de resultaten en gegevens verwerken
-        while ($row = $result->fetch_assoc()) {
-            // Toegang tot de velden van elk resultaat
+        foreach ($result as $row) {
             $id = $row["id"];
             $name = $row["name"];
             $description = $row["description"];
             $image = $row["image"];
-            if ($file_name == $name){ ?>
+
+            if ($file_name == $name) {
+                ?>
                 <section>
                     <h1><?php echo $name ?></h1>
-                    <img src= <?php echo $image?> alt="Game 1 afbeelding">
+                    <img src="<?php echo $image ?>" alt="Game 1 afbeelding">
                     <p><?php echo $description ?></p>
                 </section>
                 <?php
-          
             }
         }
-        } else {
-            echo "Geen resultaten gevonden.";
-        }
+    } else {
+        echo "Geen resultaten gevonden.";
     }
-    // Sluit de databaseverbinding
-    $conn->close();
+} catch (PDOException $e) {
+    die("Fout bij het verbinden met de database: " . $e->getMessage());
+}
 ?>
